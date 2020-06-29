@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel ="stylesheet" href="formatting2.css">
+
+</head>
+
+<body>
+
+    <nav th:replace = "layout :: navbar" ></nav>
+
+    <div class= "container">
+
+        <h2 class = "text-center pt-4">Add new expenditure:</h2><br>
+        <div id = "adding" class = "row justify-content-md-center">
+
+            <div id = "expenditureData" >
+
+                <!--New expenditure-->
+                <form th:action = "@{/expenditures/save}" method = "post" th:object = "${expenditure}">
+
+                    <input type ="hidden" th:field="${expenditure.expenditureId}">
+
+                    <!--Type-->
+                    <h6> Type of expenditure</h6><br>
+                    <div class ="form-group" >
+
+                        <select th:field = "${expenditure.expType}">
+
+                            <option th:value = "SAVINGS">Savings</option>
+                            <option th:value = "TRANSPORT">Transport</option>
+                            <option th:value = "FOOD">Food</option>
+                            <option th:value = "BILLS">Bills</option>
+                            <option th:value = "ACCOMMODATION">Accommodation</option>
+                            <option th:value = "HEALTH">Health</option>
+                            <option th:value = "RECREATION">Recreation</option>
+
+                        </select>
+                    </div>
+
+                    <!--Amount-->
+                    <h6>Amount of cash</h6>
+                    <div class ="form-group">
+                        <input class="form-control mb-4 col-4" type = "text"
+                               placeholder="Amount" th:field = ${expenditure.value}>
+
+                    </div>
+
+                    <!--Date-->
+                    <h6>Date of transaction</h6>
+                    <input id ="dp3" placeholder = "YYYY-MM-DD" type ="date" class = "mb4 col-8 col-xs-4" value="Start Date"  th:field="${expenditure.date}">
+
+    <!--                <script type = "text/javascript">-->
+    <!--                    $('#dp3').datepicker();-->
+    <!--                </script>-->
+    <!--Niegdyś był tu ładniejszy picker ale kolidował z typem dat(00:00:00)-->
+
+                    <button  class ="btn btn-center btn-primary btn-md " type = "submit"> Add</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>
+

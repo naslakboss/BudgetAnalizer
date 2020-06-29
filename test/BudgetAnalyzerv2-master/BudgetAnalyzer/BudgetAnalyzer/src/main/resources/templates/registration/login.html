@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Bootstrap reference    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href ="css/formatting.css" rel = "stylesheet">
+    <!--  Po wstawieniu tego fragmentu powyżej notki Bootstrap reference tło pozostawało biale??-->
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+<!--Brak walidacji-->
+<!--Usunięta strona powitalna na której do wyboru : Profil klienta i firmy-->
+<!--Brak funkcjonalnosci autologin-->
+<body>
+<div id="login">
+    <!-- Sexy headline-->
+    <h3 class="text-center text-white pt-5">“There is a gigantic difference between earning a great deal of money and being rich.” </h3>
+
+    <div class="container">
+
+        <div id="login-row" class="row justify-content-center align-items-center">
+
+            <div id="login-column" class="col-md-6">
+
+                <div id="login-box" class="col-md-12">
+                    <!-- Login form -->
+                    <form id="login-form" class="form-signin" th:action="@{/login}" method="post">
+                        <h3 class="text-center text-info">Login</h3>
+                        <!-- Check for login error -->
+
+                        <div th:if="${param.error}">
+
+                            <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                Invalid username or password
+                            </div>
+
+                        </div>
+
+                        <!-- Username field  -->
+                        <div class="form-group">
+                            <label for="username" class="text-info">Username:</label><br>
+                            <input type="text" name="username" id="username" class="form-control"
+                                   placeholder="Username" autofocus = "true">
+                        </div>
+
+                        <!-- Password field  -->
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control"
+                                   placeholder="Password" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+
+                        </div>
+
+                        <div id="register-link" class="text-right">
+                            <a th:href="@{/registration}" class="text-info">Register here</a>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel ="stylesheet" href="formatting2.css">
+
+</head>
+
+<body>
+
+    <nav th:replace = "layout :: navbar" ></nav>
+
+    <div class = "container">
+        <h1 class="display-2 text-center">Revenues list</h1><br>
+
+        <!--Table of Total Revenues -->
+        <table class = "table table-striped">
+
+            <thead class = "thead-dark">
+                <tr>
+                    <th scope ="col">Total Revenue</th>
+                    <th scope ="col">Amount</th>
+                    <th scope ="col">Time Span</th>
+                    <th scope ="col">Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr scope = "row">
+                    <td>=====></td>
+                    <td th:text = "${sumOfRevenues}"></td>
+                    <td>June</td>
+                    <td>
+                        <a href = "#"
+                           class = "btn btn-success btn-sm">
+                            Details
+                            <!--Analogicznie-->
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--New Revenue -->
+        <a th:href ="@{revenues/new}"
+           class="btn btn-primary btn-lg btn-block">New Revenue</a><br>
+
+        <!--Table of All Revenues -->
+        <table class="table table-striped table-dark">
+
+            <thead>
+                <tr>
+                    <th scope = "col">Revenue</th>
+                    <th scope = "col">Value</th>
+                    <th scope = "col">Date</th>
+                    <th scope = "col">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr scope = "row" th:each = "aRev : ${listOfRevenues}">
+                    <td th:text = "${aRev.revenueType}"></td>
+                    <td th:text = "${aRev.value}"></td>
+                    <td th:text = "${aRev.date}"></td>
+                    <td>
+                        <!--Update/Delete buttons-->
+                        <a th:href = "@{revenues/update(id=${aRev.revenueId})}"
+                           class = "btn btn-info btn-sm">
+                            Upload
+                        </a>
+                        <a th:href = "@{revenues/delete(id=${aRev.revenueId})}"
+                           class = "btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>

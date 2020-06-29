@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel ="stylesheet" href="formatting2.css">
+
+</head>
+
+<body>
+
+    <nav th:replace = "layout :: navbar" ></nav>
+
+    <div class = "container">
+
+        <h1 class="display-2 text-center">Expenditures list</h1><br>
+
+        <!--Table of total expenses-->
+        <table class = "table table-striped">
+            <thead class = "thead-dark">
+                <tr>
+                    <th scope = "col">Total Expenditures</th>
+                    <th scope = "col">Amount</th>
+                    <th scope = "col">Time span</th>
+                    <th scope = "col">Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>   =====></td>
+                    <td th:text = "${sumOfExpenditures}"></td>
+                    <td>June</td>
+                    <td>
+                        <a href = "#" class = "btn btn-success btn-sm">
+                            Details
+                            <!--Wydatki tylko z jednego miesiąca-->
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--New Expenditure button-->
+        <a th:href ="@{expenditures/new}"
+           class="btn btn-primary btn-lg btn-block">New Expenditure</a><br>
+
+        <!-- Table of all expenditure-->
+        <!--Trzeba ja bedzie podzielic poprzez paginate bo na jednej str wydluzy sie do rozmiarow Reginy -->
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope = "col">Expenditure</th>
+                    <th scope = "col">Value</th>
+                    <th scope = "col">Date</th>
+                    <th scope = "col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope = "row" th:each = "aExp : ${listOfExpenditures}">
+                    <td th:text = "${aExp.expType}"></td>
+                    <td th:text = "${aExp.value}"></td>
+                    <td th:text = "${aExp.date}"></td>
+
+                    <!--Update / Delete buttons-->
+                    <td>
+                        <a th:href = "@{expenditures/update(id=${aExp.expenditureId})}"
+                           class = "btn btn-info btn-sm">
+                            Update
+                        </a>
+
+                        <a th:href = "@{expenditures/delete(id=${aExp.expenditureId})}"
+                           class = "btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

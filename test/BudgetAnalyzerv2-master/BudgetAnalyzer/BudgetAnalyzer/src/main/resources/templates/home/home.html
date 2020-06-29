@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!--    Gotowe wykresy z Google Charts, chce podpiac pod nie wydatki z miesiaca, a z szybkiej instrukcji wynika-->
+<!--    By wlasnie w headzie wrzucic skrypt js'a?-->
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+<!--      // Load the Visualization API and the corechart package.-->
+      google.charts.load('current', {'packages':['bar']});
+<!--      // Set a callback to run when the Google Visualization API is loaded.-->
+      google.charts.setOnLoadCallback(drawChart);
+
+<!--      // Callback that creates and populates a data table,-->
+<!--      // instantiates the pie chart, passes in the data and-->
+<!--      // draws it.-->
+           function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Expenditures', 'Revenue', 'Stonks'],
+          ['March', 2500, 2400, 100],
+          ['April', 3000, 2200, 800],
+          ['May', 2400, 2100, 300],
+          ['June', 2600, 1900, 600  ]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Home private budget ',
+            subtitle: 'Monthly comparison',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+</head>
+
+<body>
+
+    <nav th:replace = "layout :: navbar" ></nav>
+
+    <div class= "container">
+
+        <h1>Your's overall income/outcome status </h1>
+        <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+
+    </div>
+
+</body>
+</html>

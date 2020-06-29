@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel ="stylesheet" href="formatting2.css">
+
+</head>
+
+<body>
+
+<nav th:replace = "layout :: navbar" ></nav>
+
+    <div class= "container">
+
+        <h2 class = "text-center pt-4">Add new revenue:</h2><br>
+        <div id = "adding" class = "row justify-content-md-center">
+
+            <div id = "revenueData" >
+
+                <!--New Revenue-->
+                <form th:action = "@{/revenues/save}" method = "post" th:object = "${revenue}">
+
+                    <input type ="hidden" th:field="${revenue.revenueId}">
+
+                    <!--Type-->
+                    <h6> Type of revenue</h6><br>
+                    <div class ="form-group">
+
+                        <select th:field = "${revenue.revenueType}">
+
+                            <option th:value = "SALARY">Salary</option>
+                            <option th:value = "BUSINESS">Business</option>
+                            <option th:value = "RENT">Rent</option>
+                            <option th:value = "OTHERS">Others</option>
+
+                        </select>
+                    </div>
+
+                    <!--Amount-->
+                    <h6>Amount of cash</h6>
+                    <div class ="form-group ">
+                        <input class="form-control mb-4 col-4"
+                               type = "text" placeholder="Amount" th:field = ${revenue.value}>
+                    </div>
+
+                    <!--Date-->
+                    <h6>Date of transaction</h6>
+                    <input id ="dp3" placeholder = "YYYY-MM-DD" type ="date" class = "mb4 col-8 col-xs-4" value="Start Date"  th:field="${revenue.date}">
+
+                    <!--                <script type = "text/javascript">-->
+                    <!--                    $('#dp3').datepicker();-->
+                    <!--                </script>-->
+                    <!--Niegdyś był tu ładniejszy picker ale kolidował z typem dat(00:00:00)-->
+                    <button  class ="btn btn-primary btn-md " type = "submit"> Add</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+</div>
+
+</body>
+</html>
